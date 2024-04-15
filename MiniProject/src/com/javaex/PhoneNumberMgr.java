@@ -9,7 +9,8 @@ public class PhoneNumberMgr {
 	private FileMgr fMgr;
 	
 //	private PhoneNumberMgr() {
-//		loadMgr();
+//		fMgr = new FileMgr();
+//		requestLoadList();
 //	}
 	
 //	public static PhoneNumberMgr getInstance()
