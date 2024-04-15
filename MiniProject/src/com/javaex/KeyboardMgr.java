@@ -12,16 +12,30 @@ public class KeyboardMgr {
 		textInput = new Scanner(System.in);
 	}
 	
-	public String KeyInput(String input)
+	public String textInput()
 	{
+		String str = null;
 		
-		return null;
+		try {
+			str = textInput.nextLine();
+		} catch (Exception e) {
+			System.out.println("문자만 입력해주세요");
+		}
+		
+		return str;
 	}
 	
-	public Integer KeyInput(Integer input)
+	public Integer numberInput()
 	{
+		Integer integer = null;
 		
-		return null;
+		try {
+			integer = textInput.nextInt();
+		} catch (Exception e) {
+			System.out.println("숫자만 입력해주세요");
+		}
+		
+		return integer;
 	}
 	
 	/* 
