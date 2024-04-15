@@ -9,9 +9,10 @@ import java.util.Scanner;
 public class MiniProjectEx {
 	private static String rootPath = System.getProperty("user.dir") + "\\DB\\"; 
 	private static String dst = rootPath + "PhoneDB.txt";
-	
+
 	public static void main(String[] args) {
 		LinkedList<PhoneNumber> list = new LinkedList<PhoneNumber>();
+		
 		Scanner scanner = new Scanner(System.in);
 		int userInput = 0;
 		
@@ -19,10 +20,10 @@ public class MiniProjectEx {
 		// 파일 불러오기
 		loadMgr(list);
 		
-		phoneUIMgrStart();
+		PhoneUIMgr.phoneUIMgrStart();
 
 		while (userInput != 5) {
-			phoneUIMgrMain();
+			PhoneUIMgr.phoneUIMgrMain();
 			userInput = scanner.nextInt();
 			System.out.println();
 			
@@ -35,6 +36,16 @@ public class MiniProjectEx {
 				case 2 ->{
 					// 등록	
 					System.out.println("<2. 등록>");
+					
+					String name = null;
+					String phoneNumber = null;
+					String companyNumber = null;
+					System.out.print(">이름 : ");
+					name = scanner.nextLine();
+					System.out.print(">휴대폰 : ");
+					phoneNumber = scanner.nextLine();
+					System.out.print(">회사전화 : ");
+					companyNumber = scanner.nextLine();
 				}
 				case 3 ->{
 					// 삭제
@@ -46,7 +57,7 @@ public class MiniProjectEx {
 				}
 				case 5 ->{
 					// 종료
-					phoneUIMgrEnd();
+					PhoneUIMgr.phoneUIMgrEnd();
 				}
 			
 				default ->{
@@ -101,26 +112,5 @@ public class MiniProjectEx {
 		}
 	}
 	
-	// UI 구현
-	// 시작 UI
-	private static void phoneUIMgrStart() {
-		System.out.println("****************************************");
-		System.out.println("*          전화번호 관리 프로그램           *");
-		System.out.println("****************************************");
-	}
-	
-	// 반복 UI
-	private static void phoneUIMgrMain() {
-		System.out.println("1. 리스트 | 2. 등록 | 3.삭제 | 4.검색 | 5. 종료");
-		System.out.println("------------------------------------------");
-		System.out.print(">메뉴번호 : ");
-	}
-	
-	// 종료
-	private static void phoneUIMgrEnd() {
-		System.out.println("****************************************");
-		System.out.println("*                감사합니다               *");
-		System.out.println("****************************************");
 
-	}
 }
