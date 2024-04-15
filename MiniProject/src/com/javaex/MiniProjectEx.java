@@ -4,18 +4,16 @@ import java.util.Scanner;
 
 public class MiniProjectEx {
 	public static void main(String[] args) {
-		PhoneNumberMgr pMgr = PhoneNumberMgr.instance.getInstance();
-		PhoneUIMgr pUiMgr = PhoneUIMgr.instance.getInstance();
 		Scanner scanner = new Scanner(System.in);
 		int userInput = 0;
 		
 		// 프로그램 시작
 		// 파일 불러오기
 		
-		pUiMgr.phoneUIMgrStart();
+		PhoneUIMgr.getInstance().phoneUIMgrStart();
 
 		while (userInput != 5) {
-			pUiMgr.phoneUIMgrMain();
+			PhoneUIMgr.getInstance().phoneUIMgrMain();
 			userInput = scanner.nextInt();
 			System.out.println();
 			
@@ -23,7 +21,7 @@ public class MiniProjectEx {
 				case 1 ->{
 					// 리스트
 					System.out.println("<1. 리스트>");
-					pMgr.printList();
+					PhoneNumberMgr.getInstance().printList();
 				}
 				case 2 ->{
 					// 등록	
@@ -50,7 +48,7 @@ public class MiniProjectEx {
 				}
 				case 5 ->{
 					// 종료
-					pUiMgr.phoneUIMgrEnd();
+					PhoneUIMgr.getInstance().phoneUIMgrEnd();
 				}
 			
 				default ->{

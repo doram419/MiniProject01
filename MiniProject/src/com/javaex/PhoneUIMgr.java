@@ -1,11 +1,11 @@
 package com.javaex;
 
 public class PhoneUIMgr {
-	public static PhoneUIMgr instance = new PhoneUIMgr();
+	private static PhoneUIMgr instance = new PhoneUIMgr();
 	
 	private PhoneUIMgr() {};
 	
-	public PhoneUIMgr getInstance()
+	public static PhoneUIMgr getInstance()
 	{
 		return instance;
 	}

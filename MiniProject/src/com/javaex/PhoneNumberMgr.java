@@ -7,7 +7,7 @@ import java.util.LinkedList;
 import java.util.Scanner;
 
 public class PhoneNumberMgr {
-	public static PhoneNumberMgr instance = new PhoneNumberMgr();
+	private static PhoneNumberMgr instance = new PhoneNumberMgr();
 	private static String rootPath = System.getProperty("user.dir") + "\\DB\\"; 
 	private static String dst = rootPath + "PhoneDB.txt";
 	private LinkedList<PhoneNumber> phoneList = new LinkedList<PhoneNumber>();
@@ -16,7 +16,7 @@ public class PhoneNumberMgr {
 		loadMgr();
 	}
 	
-	public PhoneNumberMgr getInstance()
+	public static PhoneNumberMgr getInstance()
 	{
 		return instance;
 	}
