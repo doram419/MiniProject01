@@ -1,6 +1,8 @@
 package com.javaex;
 
 import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class MiniProjectEx {
 	public static void main(String[] args) {
@@ -17,14 +19,11 @@ public class MiniProjectEx {
 			int number = 0;
 			PhoneUIMgr.getInstance().phoneUIMgrMain();
 			
-			number = numberInput.nextInt();
-//			try {
-//				number = numberInput.nextInt();
-//			} catch (InputMismatchException e) {
-//				System.out.println("잘못된 입력입니다.");
-//			} catch (Exception e) {
-//				e.printStackTrace();
-//			}
+			try {
+				number = numberInput.nextInt();
+			} catch (Exception e) {
+				System.out.println("잘못된 입력입니다.");
+			}
 			
 			System.out.println();
 			
@@ -49,15 +48,16 @@ public class MiniProjectEx {
 					System.out.print("> 회사전화 : ");
 					companyNumber = textInput.nextLine();
 					
-					PhoneNumberMgr.getInstance().addList(name, phoneNumber, companyNumber);
+					if(phoneRegex(phoneNumber, companyNumber))
+						PhoneNumberMgr.getInstance().addList(name, phoneNumber, companyNumber);
+					else
+						System.out.println("형식이 올바르지 않습니다");
 				}
 				case 3 ->{
 					// 삭제
 					System.out.println("<3. 삭제 (-1 돌아가기)>");
-					System.out.print("> 번호 : ");
-					
+					System.out.print("> 삭제할 번호 : ");
 					number = numberInput.nextInt();
-					
 					PhoneNumberMgr.getInstance().remove(number);
 				}
 				case 4 ->{
@@ -92,5 +92,24 @@ public class MiniProjectEx {
 		// 프로그램 종료
 		numberInput.close();
 		textInput.close();
+	}
+	
+	private static boolean phoneRegex(String hp, String tel) {
+		// 전화번호 패턴 : [공백][3자리 숫자-3~4자리 숫자-4자리 숫자][공백]
+		String hpPattern = "(\\d{3}\\-\\d{3,4}\\-\\d{4})\\s*";
+		Pattern hpRegex = Pattern.compile(hpPattern);
+		Matcher hpMatcher = hpRegex.matcher(hp);
+		
+		// 회사 패턴 : [공백][2~4자리 숫자-3~4자리 숫자-4자리 숫자][공백]
+		String telPattern = "(\\d{2,4}\\-\\d{3,4}\\-\\d{4})\\s*";
+		Pattern telRegex = Pattern.compile(telPattern);
+		Matcher telMatcher = telRegex.matcher(tel);
+		
+		if (hpMatcher.matches() && telMatcher.matches())
+		{
+			return true;
+		}
+		
+		return false;
 	}
 }

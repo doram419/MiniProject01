@@ -61,6 +61,7 @@ public class PhoneNumberMgr {
 		number--;
 		if(number == -2)
 		{
+			System.out.println("[ 메뉴로 돌아갑니다. ]");
 			return;
 		}
 		

@@ -21,7 +21,7 @@ public class PhoneUIMgr {
 	// 반복 UI
 	public void phoneUIMgrMain() {
 		System.out.println("1. 리스트 | 2. 등록 | 3.삭제 | 4.검색 | 5. 종료 | 6. 초깃값으로");
-		System.out.println("------------------------------------------");
+		System.out.println("----------------------------------------------------------");
 		System.out.print(">메뉴번호 : ");
 	}
 	
