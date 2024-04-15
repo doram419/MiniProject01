@@ -19,7 +19,7 @@ public class PhoneNumberMgr {
 	// 파일 불러오기 요청
 	private void requestLoadList()
 	{
-		phoneList = FileMgr.getInstance().load();
+		phoneList = FileMgr.getInstance().load(0);
 	}
 	
 	public void requestSaveList()

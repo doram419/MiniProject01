@@ -11,6 +11,7 @@ import java.util.Scanner;
 public class FileMgr {
 	private static String rootPath = System.getProperty("user.dir") + "\\DB\\"; 
 	private static String dst = rootPath + "PhoneDB.txt";
+	private static String resetDst = rootPath + "PhoneDB_origin.txt";
 	private static FileMgr instance = new FileMgr();
 	
 	private FileMgr(){ }
@@ -19,9 +20,17 @@ public class FileMgr {
 		return instance;
 	}
 	
-	// 파일 불러오기
-	public LinkedList<People> load() {
-		File file = new File(dst);
+	// 파일 불러오기, 기본 불러오기 0, 1 == 리셋
+	public LinkedList<People> load(int option) {
+		String path = null;
+		
+		if(option == 0)
+			path = dst;
+		else if(option == 1)
+			path = resetDst;
+			
+		File file = new File(path);
+		
 		LinkedList<People> phoneList = new LinkedList<People>();
 
 		try (Scanner scanner = new Scanner(file);) {
