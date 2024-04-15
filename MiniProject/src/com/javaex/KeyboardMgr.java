@@ -4,38 +4,46 @@ import java.util.Scanner;
 
 public class KeyboardMgr {
 	// 싱글턴
-	private Scanner numberInput;
-	private Scanner textInput;
+	private Scanner numberScanner;
+	private Scanner textScanner;
+	private Integer tempInt;
+	private String tempStr;
 	
 	public KeyboardMgr() {
-		numberInput = new Scanner(System.in);
-		textInput = new Scanner(System.in);
+		numberScanner = new Scanner(System.in);
+		textScanner = new Scanner(System.in);
 	}
 	
-	public String textInput()
+	public boolean textInput(String returnStr)
 	{
-		String str = null;
+		tempStr = null;
 		
 		try {
-			str = textInput.nextLine();
+			tempStr = textScanner.nextLine();
+			returnStr = tempStr;
+			
 		} catch (Exception e) {
 			System.out.println("문자만 입력해주세요");
+			return false;
 		}
 		
-		return str;
+		return true;
 	}
 	
-	public Integer numberInput()
+	public boolean numberInput(Integer returnInt)
 	{
-		Integer integer = null;
+		tempInt = -1;
 		
 		try {
-			integer = textInput.nextInt();
+			tempInt = numberScanner.nextInt();
+			returnInt = tempInt;
 		} catch (Exception e) {
 			System.out.println("숫자만 입력해주세요");
+			
+			return false;
 		}
 		
-		return integer;
+		return true;
 	}
 	
 	/* 
@@ -43,7 +51,7 @@ public class KeyboardMgr {
 	 * */
 	public void end()
 	{
-		numberInput.close();
-		textInput.close();
+		numberScanner.close();
+		textScanner.close();
 	}
 }

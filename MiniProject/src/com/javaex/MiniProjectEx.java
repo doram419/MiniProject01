@@ -6,6 +6,7 @@ public class MiniProjectEx {
 	public static void main(String[] args) {
 		PhoneNumberMgr pMgr = new PhoneNumberMgr();
 		//PhoneUIMgr pUiMgr = new PhoneUIMgr();
+		KeyboardMgr kMgr = new KeyboardMgr();
 		
 		Scanner numberInput = new Scanner(System.in);
 		Scanner textInput = new Scanner(System.in);
@@ -19,7 +20,7 @@ public class MiniProjectEx {
 		while (isContinue) {
 			int number = 0;
 			PhoneUIMgr.getInstance().phoneUIMgrMain();
-			number = numberInput.nextInt();
+			kMgr.numberInput(number);
 			
 			System.out.println();
 			
