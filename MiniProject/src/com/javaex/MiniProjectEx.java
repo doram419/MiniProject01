@@ -37,11 +37,11 @@ public class MiniProjectEx {
 					String phoneNumber = null;
 					String companyNumber = null;
 					
-					System.out.print(">이름 : ");
+					System.out.print("> 이름 : ");
 					name = userInput.nextLine();
-					System.out.print(">휴대폰 : ");
+					System.out.print("> 휴대폰 : ");
 					phoneNumber = userInput.nextLine();
-					System.out.print(">회사전화 : ");
+					System.out.print("> 회사전화 : ");
 					companyNumber = userInput.nextLine();
 					
 					pMgr.addList(name, phoneNumber, companyNumber);
