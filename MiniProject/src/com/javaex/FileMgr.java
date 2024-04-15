@@ -11,6 +11,13 @@ import java.util.Scanner;
 public class FileMgr {
 	private static String rootPath = System.getProperty("user.dir") + "\\DB\\"; 
 	private static String dst = rootPath + "PhoneDB.txt";
+	private static FileMgr instance = new FileMgr();
+	
+	private FileMgr(){ }
+	
+	public static FileMgr getInstance() {
+		return instance;
+	}
 	
 	// 파일 불러오기
 	public LinkedList<People> load() {

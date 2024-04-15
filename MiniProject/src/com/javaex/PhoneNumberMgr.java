@@ -6,10 +6,8 @@ import java.util.LinkedList;
 public class PhoneNumberMgr {
 	private static PhoneNumberMgr instance = new PhoneNumberMgr();
 	private LinkedList<People> phoneList;
-	private FileMgr fMgr;
 	
 	private PhoneNumberMgr() {
-		fMgr = new FileMgr();
 		requestLoadList();
 	}
 	
@@ -18,20 +16,15 @@ public class PhoneNumberMgr {
 		return instance;
 	}
 	
-//	public PhoneNumberMgr() {
-//		fMgr = new FileMgr();
-//		requestLoadList();
-//	}
-	
 	// 파일 불러오기 요청
 	private void requestLoadList()
 	{
-		phoneList = fMgr.load();
+		phoneList = FileMgr.getInstance().load();
 	}
 	
 	public void requestSaveList()
 	{
-		fMgr.save(phoneList);
+		FileMgr.getInstance().save(phoneList);
 	}
 	
 	// 현재 List에 저장된 자료 확인
