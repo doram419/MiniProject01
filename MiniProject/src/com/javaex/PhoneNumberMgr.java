@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Iterator;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Scanner;
 
 public class PhoneNumberMgr {
@@ -64,6 +65,8 @@ public class PhoneNumberMgr {
 	// 현재 List에 자료 추가
 	public void addList(String name, String phoneNumber, String companyNumber)
 	{
-
+		People people = new People(name, phoneNumber, companyNumber);
+		
+		phoneList.add(people);
 	}
 }
