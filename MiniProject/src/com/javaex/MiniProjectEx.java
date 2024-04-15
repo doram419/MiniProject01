@@ -1,29 +1,21 @@
 package com.javaex;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.util.Iterator;
-import java.util.LinkedList;
 import java.util.Scanner;
 
 public class MiniProjectEx {
-	private static String rootPath = System.getProperty("user.dir") + "\\DB\\"; 
-	private static String dst = rootPath + "PhoneDB.txt";
-
 	public static void main(String[] args) {
-		LinkedList<PhoneNumber> list = new LinkedList<PhoneNumber>();
-		
+		PhoneNumberMgr pMgr = PhoneNumberMgr.instance.getInstance();
+		PhoneUIMgr pUiMgr = PhoneUIMgr.instance.getInstance();
 		Scanner scanner = new Scanner(System.in);
 		int userInput = 0;
 		
 		// 프로그램 시작
 		// 파일 불러오기
-		loadMgr(list);
 		
-		PhoneUIMgr.phoneUIMgrStart();
+		pUiMgr.phoneUIMgrStart();
 
 		while (userInput != 5) {
-			PhoneUIMgr.phoneUIMgrMain();
+			pUiMgr.phoneUIMgrMain();
 			userInput = scanner.nextInt();
 			System.out.println();
 			
@@ -31,12 +23,13 @@ public class MiniProjectEx {
 				case 1 ->{
 					// 리스트
 					System.out.println("<1. 리스트>");
-					printList(list);
+					pMgr.printList();
 				}
 				case 2 ->{
 					// 등록	
 					System.out.println("<2. 등록>");
 					
+					// 분리필요
 					String name = null;
 					String phoneNumber = null;
 					String companyNumber = null;
@@ -57,7 +50,7 @@ public class MiniProjectEx {
 				}
 				case 5 ->{
 					// 종료
-					PhoneUIMgr.phoneUIMgrEnd();
+					pUiMgr.phoneUIMgrEnd();
 				}
 			
 				default ->{
@@ -72,45 +65,6 @@ public class MiniProjectEx {
 		scanner.close();
 	}
 	
-	// 파일 불러오기
-	private static void loadMgr(LinkedList<PhoneNumber> list) {
-		File file = new File(dst);
-				
-		try (
-			Scanner scanner = new Scanner(file);
-				) {
-			while((scanner.hasNext()))
-			{
-				String str = scanner.next();
-				String[] splits = str.split(",");
-				
-				try {
-					PhoneNumber phoneNumber = new PhoneNumber(splits[0], splits[1], splits[2]);
-					list.add(phoneNumber);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}	
-			}
-			
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		} 
-		catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
 
-	// 현재 List에 저장된 자료 확인
-	private static void printList(LinkedList<PhoneNumber> list) {
-		Iterator<PhoneNumber> iterator = list.iterator();
-		int dataNum = 1;
-		
-		while (iterator.hasNext()) {
-			PhoneNumber phoneNumber = iterator.next();
-			System.out.println(dataNum + ". " + phoneNumber);
-			dataNum++;
-		}
-	}
-	
 
 }
