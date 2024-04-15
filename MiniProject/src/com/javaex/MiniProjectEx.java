@@ -73,6 +73,11 @@ public class MiniProjectEx {
 					PhoneUIMgr.getInstance().phoneUIMgrEnd();
 					isContinue = false;
 				}
+				case 6 ->{
+					// 리셋
+					PhoneNumberMgr.getInstance().requestResetList();
+					System.out.println("[ 리셋 완료! ]");
+				}
 			
 				default ->{
 					System.out.println("[ 다시 입력해주세요 ]");

@@ -22,6 +22,13 @@ public class PhoneNumberMgr {
 		phoneList = FileMgr.getInstance().load(0);
 	}
 	
+	// 파일 초기상태로 리셋 요청
+	public void requestResetList()
+	{
+		phoneList = FileMgr.getInstance().load(1);
+	}
+	
+	// 파일 저장 요청
 	public void requestSaveList()
 	{
 		FileMgr.getInstance().save(phoneList);
