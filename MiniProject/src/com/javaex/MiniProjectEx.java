@@ -49,6 +49,9 @@ public class MiniProjectEx {
 				case 3 ->{
 					// 삭제
 					System.out.println("<3. 삭제>");
+					System.out.print("> 번호 : ");
+					numberInput = select.nextInt();
+					pMgr.remove(numberInput);
 				}
 				case 4 ->{
 					// 검색
