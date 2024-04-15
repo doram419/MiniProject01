@@ -4,10 +4,6 @@ import java.util.Scanner;
 
 public class MiniProjectEx {
 	public static void main(String[] args) {
-		PhoneNumberMgr pMgr = new PhoneNumberMgr();
-		//PhoneUIMgr pUiMgr = new PhoneUIMgr();
-		KeyboardMgr kMgr = new KeyboardMgr();
-		
 		Scanner numberInput = new Scanner(System.in);
 		Scanner textInput = new Scanner(System.in);
 		boolean isContinue = true;
@@ -20,7 +16,15 @@ public class MiniProjectEx {
 		while (isContinue) {
 			int number = 0;
 			PhoneUIMgr.getInstance().phoneUIMgrMain();
+			
 			number = numberInput.nextInt();
+//			try {
+//				number = numberInput.nextInt();
+//			} catch (InputMismatchException e) {
+//				System.out.println("잘못된 입력입니다.");
+//			} catch (Exception e) {
+//				e.printStackTrace();
+//			}
 			
 			System.out.println();
 			
@@ -28,13 +32,12 @@ public class MiniProjectEx {
 				case 1 ->{
 					// 리스트
 					System.out.println("<1. 리스트>");
-					pMgr.printList();
+					PhoneNumberMgr.getInstance().printList();
 				}
 				case 2 ->{
 					// 등록	
 					System.out.println("<2. 등록>");
 					
-					// 분리필요
 					String name = null;
 					String phoneNumber = null;
 					String companyNumber = null;
@@ -46,14 +49,16 @@ public class MiniProjectEx {
 					System.out.print("> 회사전화 : ");
 					companyNumber = textInput.nextLine();
 					
-					pMgr.addList(name, phoneNumber, companyNumber);
+					PhoneNumberMgr.getInstance().addList(name, phoneNumber, companyNumber);
 				}
 				case 3 ->{
 					// 삭제
 					System.out.println("<3. 삭제>");
 					System.out.print("> 번호 : ");
+					
 					number = numberInput.nextInt();
-					pMgr.remove(number);
+					
+					PhoneNumberMgr.getInstance().remove(number);
 				}
 				case 4 ->{
 					// 검색
@@ -61,7 +66,7 @@ public class MiniProjectEx {
 					System.out.println("<4. 검색>");
 					System.out.print(">이름 :");
 					search = textInput.nextLine();
-					pMgr.search(search);
+					PhoneNumberMgr.getInstance().search(search);
 				}
 				case 5 ->{
 					// 종료
@@ -77,7 +82,8 @@ public class MiniProjectEx {
 		}
 		
 		// 파일 저장하기
-		pMgr.requestSaveList();
+		PhoneNumberMgr.getInstance().requestSaveList();
+		
 		// 프로그램 종료
 		numberInput.close();
 		textInput.close();

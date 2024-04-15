@@ -3,7 +3,6 @@ package com.javaex;
 import java.util.Scanner;
 
 public class KeyboardMgr {
-	// 싱글턴
 	private Scanner numberScanner;
 	private Scanner textScanner;
 	private Integer tempInt;

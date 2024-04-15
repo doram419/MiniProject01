@@ -4,24 +4,24 @@ import java.util.Iterator;
 import java.util.LinkedList;
 
 public class PhoneNumberMgr {
-	//private static PhoneNumberMgr instance = new PhoneNumberMgr();
+	private static PhoneNumberMgr instance = new PhoneNumberMgr();
 	private LinkedList<People> phoneList;
 	private FileMgr fMgr;
 	
-//	private PhoneNumberMgr() {
-//		fMgr = new FileMgr();
-//		requestLoadList();
-//	}
-	
-//	public static PhoneNumberMgr getInstance()
-//	{
-//		return instance;
-//	}
-	
-	public PhoneNumberMgr() {
+	private PhoneNumberMgr() {
 		fMgr = new FileMgr();
 		requestLoadList();
 	}
+	
+	public static PhoneNumberMgr getInstance()
+	{
+		return instance;
+	}
+	
+//	public PhoneNumberMgr() {
+//		fMgr = new FileMgr();
+//		requestLoadList();
+//	}
 	
 	// 파일 불러오기 요청
 	private void requestLoadList()
