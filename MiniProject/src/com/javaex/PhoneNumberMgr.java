@@ -8,18 +8,22 @@ import java.util.List;
 import java.util.Scanner;
 
 public class PhoneNumberMgr {
-	private static PhoneNumberMgr instance = new PhoneNumberMgr();
+	//private static PhoneNumberMgr instance = new PhoneNumberMgr();
 	private static String rootPath = System.getProperty("user.dir") + "\\DB\\"; 
 	private static String dst = rootPath + "PhoneDB.txt";
 	private LinkedList<People> phoneList = new LinkedList<People>();
 	
-	private PhoneNumberMgr() {
-		loadMgr();
-	}
+//	private PhoneNumberMgr() {
+//		loadMgr();
+//	}
 	
-	public static PhoneNumberMgr getInstance()
-	{
-		return instance;
+//	public static PhoneNumberMgr getInstance()
+//	{
+//		return instance;
+//	}
+	
+	public PhoneNumberMgr() {
+		loadMgr();
 	}
 	
 	// 파일 불러오기
@@ -68,5 +72,6 @@ public class PhoneNumberMgr {
 		People people = new People(name, phoneNumber, companyNumber);
 		
 		phoneList.add(people);
+		System.out.println("[ 입력 완료 ]");
 	}
 }

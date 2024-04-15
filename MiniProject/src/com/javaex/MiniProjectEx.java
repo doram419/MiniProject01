@@ -4,24 +4,29 @@ import java.util.Scanner;
 
 public class MiniProjectEx {
 	public static void main(String[] args) {
-		Scanner scanner = new Scanner(System.in);
-		int userInput = 0;
+		PhoneNumberMgr pMgr = new PhoneNumberMgr();
+		PhoneUIMgr pUiMgr = new PhoneUIMgr();
+		
+		Scanner select = new Scanner(System.in);
+		Scanner userInput = new Scanner(System.in);
+		int numberInput = 0;
 		
 		// 프로그램 시작
 		// 파일 불러오기
 		
-		PhoneUIMgr.getInstance().phoneUIMgrStart();
+		pUiMgr.phoneUIMgrStart();
 
-		while (userInput != 5) {
-			PhoneUIMgr.getInstance().phoneUIMgrMain();
-			userInput = scanner.nextInt();
+		while (numberInput != 5) {
+			pUiMgr.phoneUIMgrMain();
+			numberInput = select.nextInt();
+			
 			System.out.println();
 			
-			switch (userInput) {
+			switch (numberInput) {
 				case 1 ->{
 					// 리스트
 					System.out.println("<1. 리스트>");
-					PhoneNumberMgr.getInstance().printList();
+					pMgr.printList();
 				}
 				case 2 ->{
 					// 등록	
@@ -31,14 +36,15 @@ public class MiniProjectEx {
 					String name = null;
 					String phoneNumber = null;
 					String companyNumber = null;
-					System.out.print(">이름 : ");
-					name = scanner.nextLine();
-					System.out.print(">휴대폰 : ");
-					phoneNumber = scanner.nextLine();
-					System.out.print(">회사전화 : ");
-					companyNumber = scanner.nextLine();
 					
-					PhoneNumberMgr.getInstance().addList(name, phoneNumber, companyNumber);
+					System.out.print(">이름 : ");
+					name = userInput.nextLine();
+					System.out.print(">휴대폰 : ");
+					phoneNumber = userInput.nextLine();
+					System.out.print(">회사전화 : ");
+					companyNumber = userInput.nextLine();
+					
+					pMgr.addList(name, phoneNumber, companyNumber);
 				}
 				case 3 ->{
 					// 삭제
@@ -50,7 +56,7 @@ public class MiniProjectEx {
 				}
 				case 5 ->{
 					// 종료
-					PhoneUIMgr.getInstance().phoneUIMgrEnd();
+					pUiMgr.phoneUIMgrEnd();
 				}
 			
 				default ->{
@@ -62,7 +68,8 @@ public class MiniProjectEx {
 		
 		// 파일 저장하기
 		// 프로그램 종료
-		scanner.close();
+		select.close();
+		userInput.close();
 	}
 	
 
