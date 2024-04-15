@@ -11,7 +11,7 @@ public class MiniProjectEx {
 	private static String dst = rootPath + "PhoneDB.txt";
 	
 	public static void main(String[] args) {
-		LinkedList<String> list = new LinkedList<String>();
+		LinkedList<PhoneNumber> list = new LinkedList<PhoneNumber>();
 		Scanner scanner = new Scanner(System.in);
 		int userInput = 0;
 		
@@ -19,34 +19,41 @@ public class MiniProjectEx {
 		// 파일 불러오기
 		loadMgr(list);
 		
-		phoneMgrUIStart();
+		phoneUIMgrStart();
 
 		while (userInput != 5) {
-			phoneMgrUI();
+			phoneUIMgrMain();
 			userInput = scanner.nextInt();
+			System.out.println();
 			
 			switch (userInput) {
 				case 1 ->{
 					// 리스트
+					System.out.println("<1. 리스트>");
+					printList(list);
 				}
 				case 2 ->{
 					// 등록	
+					System.out.println("<2. 등록>");
 				}
 				case 3 ->{
 					// 삭제
+					System.out.println("<3. 삭제>");
 				}
 				case 4 ->{
 					// 검색
+					System.out.println("<4. 검색>");
 				}
 				case 5 ->{
 					// 종료
+					phoneUIMgrEnd();
 				}
 			
 				default ->{
 					System.out.println("[ 다시 입력해주세요 ]");
-					System.out.println();
 				}
 			}
+			System.out.println();
 		}
 		
 		// 파일 저장하기
@@ -55,7 +62,7 @@ public class MiniProjectEx {
 	}
 	
 	// 파일 불러오기
-	private static void loadMgr(LinkedList<String> list) {
+	private static void loadMgr(LinkedList<PhoneNumber> list) {
 		File file = new File(dst);
 				
 		try (
@@ -63,7 +70,15 @@ public class MiniProjectEx {
 				) {
 			while((scanner.hasNext()))
 			{
-				list.add(scanner.next());
+				String str = scanner.next();
+				String[] splits = str.split(",");
+				
+				try {
+					PhoneNumber phoneNumber = new PhoneNumber(splits[0], splits[1], splits[2]);
+					list.add(phoneNumber);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}	
 			}
 			
 		} catch (FileNotFoundException e) {
@@ -75,27 +90,37 @@ public class MiniProjectEx {
 	}
 
 	// 현재 List에 저장된 자료 확인
-	private static void printList(LinkedList<String> list) {
-		Iterator<String> iterator = list.iterator();
+	private static void printList(LinkedList<PhoneNumber> list) {
+		Iterator<PhoneNumber> iterator = list.iterator();
+		int dataNum = 1;
 		
 		while (iterator.hasNext()) {
-			String printElement = iterator.next();
-			System.out.println(printElement);
+			PhoneNumber phoneNumber = iterator.next();
+			System.out.println(dataNum + ". " + phoneNumber);
+			dataNum++;
 		}
 	}
 	
 	// UI 구현
 	// 시작 UI
-	private static void phoneMgrUIStart() {
+	private static void phoneUIMgrStart() {
 		System.out.println("****************************************");
 		System.out.println("*          전화번호 관리 프로그램           *");
 		System.out.println("****************************************");
 	}
 	
 	// 반복 UI
-	private static void phoneMgrUI() {
+	private static void phoneUIMgrMain() {
 		System.out.println("1. 리스트 | 2. 등록 | 3.삭제 | 4.검색 | 5. 종료");
 		System.out.println("------------------------------------------");
 		System.out.print(">메뉴번호 : ");
+	}
+	
+	// 종료
+	private static void phoneUIMgrEnd() {
+		System.out.println("****************************************");
+		System.out.println("*                감사합니다               *");
+		System.out.println("****************************************");
+
 	}
 }
