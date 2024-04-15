@@ -53,7 +53,7 @@ public class MiniProjectEx {
 				}
 				case 3 ->{
 					// 삭제
-					System.out.println("<3. 삭제>");
+					System.out.println("<3. 삭제 (-1 돌아가기)>");
 					System.out.print("> 번호 : ");
 					
 					number = numberInput.nextInt();

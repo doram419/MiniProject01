@@ -59,6 +59,11 @@ public class PhoneNumberMgr {
 	public void remove(int number)
 	{
 		number--;
+		if(number == -2)
+		{
+			return;
+		}
+		
 		try {
 			phoneList.remove(number);
 			System.out.println("[ 삭제되었습니다. ]");
