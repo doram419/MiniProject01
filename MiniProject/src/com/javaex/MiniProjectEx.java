@@ -5,24 +5,25 @@ import java.util.Scanner;
 public class MiniProjectEx {
 	public static void main(String[] args) {
 		PhoneNumberMgr pMgr = new PhoneNumberMgr();
-		PhoneUIMgr pUiMgr = new PhoneUIMgr();
+		//PhoneUIMgr pUiMgr = new PhoneUIMgr();
 		
-		Scanner select = new Scanner(System.in);
-		Scanner userInput = new Scanner(System.in);
-		int numberInput = 0;
+		Scanner numberInput = new Scanner(System.in);
+		Scanner textInput = new Scanner(System.in);
+		boolean isContinue = true;
 		
 		// 프로그램 시작
 		// 파일 불러오기
 		
-		pUiMgr.phoneUIMgrStart();
+		PhoneUIMgr.getInstance().phoneUIMgrStart();
 
-		while (numberInput != 5) {
-			pUiMgr.phoneUIMgrMain();
-			numberInput = select.nextInt();
+		while (isContinue) {
+			int number = 0;
+			PhoneUIMgr.getInstance().phoneUIMgrMain();
+			number = numberInput.nextInt();
 			
 			System.out.println();
 			
-			switch (numberInput) {
+			switch (number) {
 				case 1 ->{
 					// 리스트
 					System.out.println("<1. 리스트>");
@@ -38,11 +39,11 @@ public class MiniProjectEx {
 					String companyNumber = null;
 					
 					System.out.print("> 이름 : ");
-					name = userInput.nextLine();
+					name = textInput.nextLine();
 					System.out.print("> 휴대폰 : ");
-					phoneNumber = userInput.nextLine();
+					phoneNumber = textInput.nextLine();
 					System.out.print("> 회사전화 : ");
-					companyNumber = userInput.nextLine();
+					companyNumber = textInput.nextLine();
 					
 					pMgr.addList(name, phoneNumber, companyNumber);
 				}
@@ -50,16 +51,21 @@ public class MiniProjectEx {
 					// 삭제
 					System.out.println("<3. 삭제>");
 					System.out.print("> 번호 : ");
-					numberInput = select.nextInt();
-					pMgr.remove(numberInput);
+					number = numberInput.nextInt();
+					pMgr.remove(number);
 				}
 				case 4 ->{
 					// 검색
+					String search = null;
 					System.out.println("<4. 검색>");
+					System.out.print(">이름 :");
+					search = textInput.nextLine();
+					pMgr.search(search);
 				}
 				case 5 ->{
 					// 종료
-					pUiMgr.phoneUIMgrEnd();
+					PhoneUIMgr.getInstance().phoneUIMgrEnd();
+					isContinue = false;
 				}
 			
 				default ->{
@@ -70,11 +76,9 @@ public class MiniProjectEx {
 		}
 		
 		// 파일 저장하기
+		pMgr.requestSaveList();
 		// 프로그램 종료
-		select.close();
-		userInput.close();
+		numberInput.close();
+		textInput.close();
 	}
-	
-
-
 }

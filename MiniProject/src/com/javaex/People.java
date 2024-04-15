@@ -11,6 +11,18 @@ public class People {
 		this.phoneNumber = phoneNumber;
 		this.companyNumber = companyNumber;
 	}
+	
+	public String getName() {
+		return name;
+	}
+
+	public String getPhoneNumber() {
+		return phoneNumber;
+	}
+
+	public String getCompanyNumber() {
+		return companyNumber;
+	}
 
 	@Override
 	public String toString() {

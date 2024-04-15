@@ -23,9 +23,14 @@ public class PhoneNumberMgr {
 	}
 	
 	// 파일 불러오기 요청
-	public void requestLoadList()
+	private void requestLoadList()
 	{
-		phoneList = fMgr.loadMgr();
+		phoneList = fMgr.load();
+	}
+	
+	public void requestSaveList()
+	{
+		fMgr.save(phoneList);
 	}
 	
 	// 현재 List에 저장된 자료 확인
@@ -53,7 +58,37 @@ public class PhoneNumberMgr {
 	public void remove(int number)
 	{
 		number--;
-		phoneList.remove(number);
-		System.out.println("[ 삭제되었습니다. ]");
+		try {
+			phoneList.remove(number);
+			System.out.println("[ 삭제되었습니다. ]");
+		}catch (IndexOutOfBoundsException e) {
+			System.out.println("범주 안의 번호를 입력해주세요");
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	// 검색
+	public void search(String word)
+	{
+		Iterator<People> iterator = phoneList.iterator();
+		int dataNum = 1;
+		boolean isFoundAnything = false;
+		
+		while (iterator.hasNext()) {
+			People phoneNumber = iterator.next();
+
+			if(phoneNumber.getName().contains(word))
+			{
+				System.out.println(dataNum + ". " + phoneNumber);
+				isFoundAnything = true;
+			}
+			dataNum++;
+		}
+		
+		if(!isFoundAnything) {
+			System.out.println("일치하는 이름이 없습니다");
+		}
 	}
 }

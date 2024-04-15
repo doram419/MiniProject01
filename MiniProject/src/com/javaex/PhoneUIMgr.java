@@ -1,14 +1,14 @@
 package com.javaex;
 
 public class PhoneUIMgr {
-	//private static PhoneUIMgr instance = new PhoneUIMgr();
+	private static PhoneUIMgr instance = new PhoneUIMgr();
 	
-	//private PhoneUIMgr() {};
+	private PhoneUIMgr() {};
 	
-//	public static PhoneUIMgr getInstance()
-//	{
-//		return instance;
-//	}
+	public static PhoneUIMgr getInstance()
+	{
+		return instance;
+	}
 	
 	// UI 구현
 	// 시작 UI
