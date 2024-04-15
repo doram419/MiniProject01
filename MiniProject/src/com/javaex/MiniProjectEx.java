@@ -20,7 +20,7 @@ public class MiniProjectEx {
 		while (isContinue) {
 			int number = 0;
 			PhoneUIMgr.getInstance().phoneUIMgrMain();
-			kMgr.numberInput(number);
+			number = numberInput.nextInt();
 			
 			System.out.println();
 			
