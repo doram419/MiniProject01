@@ -37,6 +37,8 @@ public class MiniProjectEx {
 					phoneNumber = scanner.nextLine();
 					System.out.print(">회사전화 : ");
 					companyNumber = scanner.nextLine();
+					
+					PhoneNumberMgr.getInstance().addList(name, phoneNumber, companyNumber);
 				}
 				case 3 ->{
 					// 삭제
