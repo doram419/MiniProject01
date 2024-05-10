@@ -1,4 +1,4 @@
-package com.javaex;
+package com.javaex.miniproject1;
 
 public class People {
 	private String name;

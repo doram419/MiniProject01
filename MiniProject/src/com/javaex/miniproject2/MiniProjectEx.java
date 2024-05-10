@@ -1,4 +1,4 @@
-package com.javaex;
+package com.javaex.miniproject2;
 
 import java.util.Scanner;
 import java.util.regex.Matcher;
@@ -9,12 +9,13 @@ public class MiniProjectEx {
 		Scanner numberInput = new Scanner(System.in);
 		Scanner textInput = new Scanner(System.in);
 		boolean isContinue = true;
+		PeopleListMgr plistMgr = new PeopleListMgr();
 		
 		// 프로그램 시작
 		// 파일 불러오기
 		
 		PhoneUIMgr.getInstance().phoneUIMgrStart();
-
+		
 		while (isContinue) {
 			int number = 0;
 			PhoneUIMgr.getInstance().phoneUIMgrMain();
@@ -29,9 +30,10 @@ public class MiniProjectEx {
 			
 			switch (number) {
 				case 1 ->{
-					// 리스트
+					// 리스트 출력
 					System.out.println("<1. 리스트>");
-					PhoneNumberMgr.getInstance().printList();
+					plistMgr.printList();
+					//PeopleListMgr.getInstance().printList();
 				}
 				case 2 ->{
 					// 등록	
@@ -49,7 +51,7 @@ public class MiniProjectEx {
 					companyNumber = textInput.nextLine();
 					
 					if(phoneRegex(phoneNumber, companyNumber))
-						PhoneNumberMgr.getInstance().addList(name, phoneNumber, companyNumber);
+						plistMgr.addList(name, phoneNumber, companyNumber);
 					else
 						System.out.println("형식이 올바르지 않습니다");
 				}
@@ -58,7 +60,7 @@ public class MiniProjectEx {
 					System.out.println("<3. 삭제 (-1 돌아가기)>");
 					System.out.print("> 삭제할 번호 : ");
 					number = numberInput.nextInt();
-					PhoneNumberMgr.getInstance().remove(number);
+					plistMgr.remove(number);
 				}
 				case 4 ->{
 					// 검색
@@ -66,19 +68,13 @@ public class MiniProjectEx {
 					System.out.println("<4. 검색>");
 					System.out.print(">이름 :");
 					search = textInput.nextLine();
-					PhoneNumberMgr.getInstance().search(search);
+					plistMgr.search(search);
 				}
 				case 5 ->{
 					// 종료
 					PhoneUIMgr.getInstance().phoneUIMgrEnd();
 					isContinue = false;
 				}
-				case 6 ->{
-					// 리셋
-					PhoneNumberMgr.getInstance().requestResetList();
-					System.out.println("[ 리셋 완료! ]");
-				}
-			
 				default ->{
 					System.out.println("[ 다시 입력해주세요 ]");
 				}
@@ -87,7 +83,7 @@ public class MiniProjectEx {
 		}
 		
 		// 파일 저장하기
-		PhoneNumberMgr.getInstance().requestSaveList();
+		plistMgr.requestSaveList();
 		
 		// 프로그램 종료
 		numberInput.close();
